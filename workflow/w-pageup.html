@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+
+
+
+<!--/////////////////////결제선 지정 나오는 페이지-->
+
+<head>
+
+<style>
+
+.work_chart{
+
+	display: flex;
+	gap: 20px;
+}
+
+.chart-left{
+
+	width: 150px;
+	height: 200px;
+	border: 1px solid #191919;
+	
+}
+
+.w-left-name{
+
+	text-align: center;
+	border-bottom: 1px solid #191919;
+}
+
+.w-right-var{
+
+	width: 150px;
+	height: 200px;
+	border: 1px solid #191919;
+
+}
+
+.approvelist-name{
+
+	text-align: center;
+	border-bottom: 1px solid #191919;
+}
+
+
+</style>
+
+<script>
+	
+	function subUpdate(element) {
+	    var organizationName = $(element).text(); // 클릭된 요소의 텍스트 콘텐츠를 가져옵니다.
+	    var approverList = document.getElementById('approver-list'); // 우측 결제선 지정 창의 요소를 가져옵니다.
+	    
+	    // 새로운 div 엘리먼트를 생성하여 조직 이름을 추가합니다.
+	    var newDiv = document.createElement('div');
+	    newDiv.textContent = organizationName; // 텍스트 내용 설정
+	    
+	    approverList.appendChild(newDiv); // 우측 결제선 지정 창에 새로운 div를 추가합니다.
+	}
+	
+	
+</script>
+
+</head>
+
+
+<!--결제서지정 버튼 클릭시 나오는 화면-->
+
+
+<main>
+
+
+<div class="work_chart">
+
+<div class="chart-left">
+	
+	<div class="w-left-name">조직도</div>
+
+		<div th:each="dto:${list}">
+				
+			<div th:text="${dto.oranization_field}"></div>
+				
+				
+			<div th:text="${dto.oranization_name}" id="sub" onclick="subUpdate(this)"></div>
+					<!--<div th:text="${dto.oranization_name}"></div-->
+
+			
+			</div>
+
+		</div>
+			
+			<!--<ul class="w-chart2">▼  사무부
+
+				<li>
+
+					<div>김몽 차장</div>
+
+					<div>김여름 과장</div>
+
+					<div>김여름 대리</div>
+
+				</li>
+
+			</ul>-->
+
+	
+
+<div class="w-right-var">
+    
+        <div class="approvelist">
+            <div class="approvelist-name">결제선지정</div>
+            <div id="approver-list">
+				 <!-- 우측 결제선 지정 창에 id 추가 -->
+                <!-- 선택된 조직 이름이 여기에 추가됩니다. -->
+            </div>
+        
+    </div>
+</div>
+
+</div>
+
+</main>
+
+
+
+</html>
